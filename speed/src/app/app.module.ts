@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ResultListComponent } from './result-list/result-list.component';
 import { SearchFormComponent } from './search-form/search-form.component';
 import { ResultCounterComponent } from './result-counter/result-counter.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { ResultCounterComponent } from './result-counter/result-counter.componen
     HttpClientModule,
     AppRoutingModule,
     StoreModule.forRoot(reducers, { metaReducers }),
-    !environment.production ? StoreDevtoolsModule.instrument() : []
+    !environment.production ? StoreDevtoolsModule.instrument() : [],
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [],
   bootstrap: [AppComponent]
